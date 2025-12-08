@@ -1,0 +1,49 @@
+{
+  "name": "payram-testsuite",
+  "version": "1.0.0",
+  "description": "PayRam E2E Test Suite with Cucumber BDD",
+  "scripts": {
+    "test": "cypress run",
+    "test:headed": "cypress run --headed",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:edge": "cypress run --browser edge",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:login": "cypress run --spec 'cypress/integration/feature/login.feature'",
+    "test:dashboard": "cypress run --spec 'cypress/integration/feature/dashboard.feature'",
+    "test:payment_link": "cypress run --spec 'cypress/integration/feature/create_payment_link.feature'",
+    "test:login:chrome": "cypress run --spec 'cypress/integration/feature/login.feature' --browser chrome",
+    "test:all": "cypress run --spec 'cypress/integration/feature/**/*.feature'",
+    "test:ci": "cypress run --spec 'cypress/integration/feature/**/*.feature'",
+    "clean:reports": "rm -rf cypress/reports && mkdir -p cypress/reports/cucumber",
+    "test:clean": "npm run clean:reports && npm run test:ci"
+  },
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.7",
+    "cypress": "^15.7.0",
+    "cypress-on-fix": "^1.1.0",
+    "cypress-xpath": "^2.0.1"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^23.2.1",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "cypress-mochawesome-reporter": "^4.0.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/integration/feature/**/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-report.html"
+    },
+    "json": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-report.json"
+    },
+    "messages": {
+      "enabled": false
+    },
+    "filterSpecs": true,
+    "omitFiltered": true
+  }
+}

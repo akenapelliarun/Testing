@@ -1,0 +1,340 @@
+name: Deploy Reports to GitHub Pages
+
+on:
+  workflow_run:
+    workflows: ["PayRam E2E Test Suite - Combined"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: read  # Need this to download artifacts from other workflows
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Wait for artifacts to be ready
+        run: sleep 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Download all artifacts
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: test-and-report.yml
+          workflow_conclusion: ""
+          path: ./artifacts
+        continue-on-error: true
+
+      - name: List downloaded artifacts
+        run: |
+          echo "=== Downloaded Artifacts Structure ==="
+          echo "Main artifacts directory:"
+          ls -la ./artifacts/ || echo "No artifacts directory"
+          echo ""
+          echo "=== cucumber-bdd-reports contents ==="
+          find ./artifacts/cucumber-bdd-reports -type f -name "*.html" -o -name "*.json" 2>/dev/null || echo "No cucumber reports found"
+          echo ""
+          echo "=== Full cucumber-bdd-reports tree ==="
+          ls -laR ./artifacts/cucumber-bdd-reports/ || echo "No cucumber-bdd-reports directory"
+
+      - name: Setup Pages directory structure
+        run: |
+          mkdir -p public/reports/cucumber
+          mkdir -p public/reports/screenshots
+          mkdir -p public/reports/videos
+
+      - name: Copy Cucumber BDD reports
+        run: |
+          echo "Copying Cucumber BDD reports..."
+          
+          # First priority: Copy the merged cucumber-report.html from root
+          if [ -f "./artifacts/cucumber-bdd-reports/cucumber-report.html" ]; then
+            echo "✓ Found merged cucumber-report.html"
+            cp ./artifacts/cucumber-bdd-reports/cucumber-report.html public/reports/cucumber/
+            cp ./artifacts/cucumber-bdd-reports/cucumber-report.json public/reports/cucumber/ 2>/dev/null || true
+          else
+            echo "⚠️ Merged cucumber-report.html not found, checking alternative locations..."
+            
+            # Try module folders if merged report doesn't exist
+            for module in login dashboard payment_link; do
+              if [ -d "./artifacts/cucumber-bdd-reports/cypress/reports/${module}/cucumber" ]; then
+                echo "  - Copying ${module} cucumber reports"
+                cp -r ./artifacts/cucumber-bdd-reports/cypress/reports/${module}/cucumber/*.html public/reports/cucumber/ 2>/dev/null || true
+                cp -r ./artifacts/cucumber-bdd-reports/cypress/reports/${module}/cucumber/*.json public/reports/cucumber/ 2>/dev/null || true
+              fi
+            done
+          fi
+          
+          echo "=== Cucumber report contents ==="
+          ls -la public/reports/cucumber/ || echo "Empty"
+          
+          # Verify cucumber-report.html exists
+          if [ ! -f "public/reports/cucumber/cucumber-report.html" ]; then
+            echo "❌ ERROR: cucumber-report.html still not found!"
+            echo "Creating placeholder page..."
+            cat > public/reports/cucumber/cucumber-report.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Cucumber Reports - PayRam Tests</title>
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      min-height: 100vh;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      margin: 0;
+                      padding: 20px;
+                  }
+                  .container {
+                      background: white;
+                      padding: 40px;
+                      border-radius: 15px;
+                      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                      text-align: center;
+                      max-width: 600px;
+                  }
+                  h1 { color: #667eea; margin-bottom: 20px; }
+                  p { color: #666; line-height: 1.8; }
+                  .icon { font-size: 4rem; margin-bottom: 20px; }
+                  ul { text-align: left; margin: 20px 0; }
+                  li { margin: 10px 0; color: #555; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <div class="icon">🥒</div>
+                  <h1>Cucumber BDD Reports</h1>
+                  <p><strong>Status:</strong> Reports are being generated</p>
+                  <p>The test execution completed, but the Cucumber HTML report is still being processed.</p>
+                  <p><strong>Possible reasons:</strong></p>
+                  <ul>
+                      <li>Tests are currently running</li>
+                      <li>Report generation is in progress</li>
+                      <li>Check back in a few minutes</li>
+                  </ul>
+                  <p><small>Last checked: <span id="timestamp"></span></small></p>
+              </div>
+              <script>
+                  document.getElementById('timestamp').textContent = new Date().toLocaleString();
+              </script>
+          </body>
+          </html>
+          EOF
+          fi
+
+      - name: Copy screenshots
+        run: |
+          if [ -d "./artifacts/test-screenshots" ]; then
+            cp -r ./artifacts/test-screenshots/* public/reports/screenshots/ || true
+          fi
+
+      - name: Copy videos
+        run: |
+          echo "Copying test videos..."
+          if [ -d "./artifacts/test-videos" ]; then
+            cp -r ./artifacts/test-videos/* public/reports/videos/ || true
+            echo "✓ Videos copied"
+          else
+            echo "⚠️ No videos found"
+          fi
+          ls -la public/reports/videos/ || echo "No videos"
+
+      - name: Generate dashboard HTML
+        run: |
+          cat > public/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>PayRam BDD Test Reports</title>
+              <style>
+                  * {
+                      margin: 0;
+                      padding: 0;
+                      box-sizing: border-box;
+                  }
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                      min-height: 100vh;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 20px;
+                  }
+                  .container {
+                      max-width: 900px;
+                      width: 100%;
+                  }
+                  .header {
+                      text-align: center;
+                      color: white;
+                      margin-bottom: 60px;
+                  }
+                  .header h1 {
+                      font-size: 3.5rem;
+                      margin-bottom: 15px;
+                      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                  }
+                  .header p {
+                      font-size: 1.3rem;
+                      opacity: 0.9;
+                  }
+                  .main-card {
+                      background: white;
+                      border-radius: 25px;
+                      padding: 60px;
+                      box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+                      text-align: center;
+                      margin-bottom: 40px;
+                  }
+                  .main-card-icon {
+                      font-size: 6rem;
+                      margin-bottom: 30px;
+                  }
+                  .main-card-title {
+                      font-size: 2.5rem;
+                      font-weight: 700;
+                      margin-bottom: 20px;
+                      color: #333;
+                  }
+                  .main-card-description {
+                      font-size: 1.2rem;
+                      color: #666;
+                      line-height: 1.8;
+                      margin-bottom: 40px;
+                  }
+                  .view-report-btn {
+                      display: inline-block;
+                      padding: 20px 50px;
+                      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                      color: white;
+                      text-decoration: none;
+                      border-radius: 15px;
+                      font-weight: 700;
+                      font-size: 1.3rem;
+                      transition: all 0.3s ease;
+                      box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+                  }
+                  .view-report-btn:hover {
+                      transform: translateY(-5px);
+                      box-shadow: 0 15px 40px rgba(79, 172, 254, 0.6);
+                  }
+                  .info-section {
+                      background: rgba(255,255,255,0.95);
+                      border-radius: 20px;
+                      padding: 40px;
+                      box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+                  }
+                  .info-section h2 {
+                      color: #4facfe;
+                      margin-bottom: 25px;
+                      font-size: 1.8rem;
+                  }
+                  .info-section p {
+                      color: #555;
+                      line-height: 1.8;
+                      margin-bottom: 15px;
+                      font-size: 1.1rem;
+                  }
+                  .badge {
+                      display: inline-block;
+                      background: #4facfe;
+                      color: white;
+                      padding: 10px 20px;
+                      border-radius: 20px;
+                      font-size: 0.95rem;
+                      margin-top: 20px;
+                      margin-right: 10px;
+                  }
+                  @media (max-width: 768px) {
+                      .header h1 {
+                          font-size: 2.5rem;
+                      }
+                      .main-card {
+                          padding: 40px 30px;
+                      }
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <div class="header">
+                      <h1>🥒 PayRam BDD Test Reports</h1>
+                      <p>Behavior-Driven Development Testing Dashboard</p>
+                  </div>
+                  
+                  <div class="main-card">
+                      <div class="main-card-icon">📊</div>
+                      <h2 class="main-card-title">Cucumber BDD Reports</h2>
+                      <p class="main-card-description">
+                          View comprehensive test reports in Gherkin format with detailed feature scenarios, 
+                          step-by-step execution results, and visual test outcomes for all modules.
+                      </p>
+                      <a href="./reports/cucumber/cucumber-report.html" class="view-report-btn">View Test Reports →</a>
+                  </div>
+                  
+                  <div class="info-section">
+                      <h2>ℹ️ About These Reports</h2>
+                      <p><strong>Last Updated:</strong> <span id="timestamp"></span></p>
+                      <p><strong>Test Suite:</strong> PayRam E2E Automated Tests</p>
+                      <p><strong>Framework:</strong> Cypress with Cucumber BDD</p>
+                      <p><strong>Schedule:</strong> Automated CI/CD via GitHub Actions</p>
+                      <p><strong>Report Format:</strong> Cucumber HTML reports with Gherkin feature scenarios showing Given-When-Then steps</p>
+                      <span class="badge">Automated CI/CD</span>
+                      <span class="badge">GitHub Actions</span>
+                      <span class="badge">Cypress 15.7.0</span>
+                      <span class="badge">Cucumber BDD</span>
+                  </div>
+              </div>
+              
+              <script>
+                  document.getElementById('timestamp').textContent = new Date().toLocaleString();
+              </script>
+          </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Notify deployment status
+        if: always()
+        run: |
+          echo "✅ Reports deployed to GitHub Pages"
+          echo "🔗 URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
