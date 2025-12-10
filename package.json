@@ -45,5 +45,8 @@
     },
     "filterSpecs": true,
     "omitFiltered": true
-  }
+  },
+  "main": "cypress.config.js",
+  "author": "",
+  "license": "ISC"
 }
