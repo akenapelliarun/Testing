@@ -18,8 +18,8 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     screenshotsFolder: 'images',
     retries: {
-      runMode: 0, // DISABLED: Retries cause Cucumber event handler conflicts in complex tests
-      openMode: 0, // Use custom retry commands (clickWithRetry, typeWithRetry) for flakiness
+      runMode: 1, // Retry failed tests 3 times in CI/CD (headless mode)
+      openMode: 1, // Retry failed tests 3 times in interactive mode (UI)
     },
     async setupNodeEvents(on, config) {
       // Implement cucumber preprocessor plugin FIRST

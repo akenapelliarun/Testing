@@ -199,6 +199,7 @@ Then('I should see the member details like email and customer id populated in th
   log('🔍 Verifying email contains "ankit@payram.com"...');
   pp.get_member_details_email().should('contain.text', 'ankit@payram.com');
   log('✅ Email verified: ankit@payram.com');
+   pp.get_member_details_email().click({ force: true });
   
   log('🔍 Verifying customer ID is displayed...');
   pp.get_member_details_customer_id().should('be.visible', { timeout: 10000 });

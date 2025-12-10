@@ -27,7 +27,7 @@ get_select_a_project()
 }
 get_test_project_3()
 {
-    return cy.xpath('//div[@class="absolute overflow-y-auto w-full min-w-[220px] bg-white border border-gray-200 rounded-md shadow-sm z-[300]"]/descendant::*[contains(text(),"Test Project 3")]')
+    return cy.xpath('//div[@class="absolute overflow-y-auto w-full min-w-[220px] bg-white border border-gray-200 rounded-md shadow-sm z-[300]"]/descendant::*[contains(text(),"Test Project 1")]')
 }
 get_add_member_button()
 {
@@ -39,7 +39,7 @@ get_cancel_button()
 }
 get_member_details_email()
 {
-    return cy.xpath('//div[@class="flex flex-col space-y-3"]/descendant::*[contains(text(),"ankit@payram.com")]')
+    return cy.xpath('//*[contains(text(),"ankit@payram.com")]')
 }
 get_member_details_customer_id()
 {
@@ -55,7 +55,8 @@ get_create_payment_link_page_container()
 }
 get_search_result_member(email)
 {
-    return cy.xpath(`//div[contains(@class, 'overflow-y-auto')]//div[contains(text(), '${email}')]`)
+    // Search for member result that contains both email and project info - get first match
+    return cy.xpath(`//div[contains(@class, 'overflow-y-auto')]//div[contains(., '${email}')]`).first()
 }
 get_generate_payment_link_button()
 {

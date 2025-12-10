@@ -1,5 +1,9 @@
 {
   "email": "ankit@payram.com",
   "password": "Tester07!",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "serverUrl": "https://sepolia.base.org",
+  "username": "sam@payram.app",
+  "pswrd": "Sam@payram1",
+  "serverKey": "170a584b-4139-4150-864a-65e1849cd031"
 }
