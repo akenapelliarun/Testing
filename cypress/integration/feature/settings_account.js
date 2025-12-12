@@ -107,8 +107,8 @@ Then('the cancel url should be entered correctly', () => {
 });
 
 // --- SEPARATE TESTCASE: Enter and assert Website URL ---
-When('I enter the website url from fixture', () => {
-    cy.log('✍️ ACTION: Entering Website URL from fixture');
+When('I enter the website url', () => {
+    cy.log('✍️ ACTION: Entering Website URL');
     set_ac.get_websiteUrl()
         .scrollIntoView()
         .should('be.visible')
