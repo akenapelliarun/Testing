@@ -5,5 +5,9 @@
   "serverUrl": "https://sepolia.base.org",
   "username": "sam@payram.app",
   "pswrd": "Sam@payram1",
-  "serverKey": "170a584b-4139-4150-864a-65e1849cd031"
+  "serverKey": "170a584b-4139-4150-864a-65e1849cd031",
+  "projectName": "Test Project 3",
+  "websiteUrl": "https://testnet.resuefas.vip:8443",
+  "successUrl": "https://success.resuefas.vip",
+  "cancelUrl": "https://cancel.resuefas.vip"
 }

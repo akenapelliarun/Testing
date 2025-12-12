@@ -4,12 +4,9 @@ import home_page from '../../pages/home_page';
 import settings_page from '../../pages/settings_page';
 
 // Page Objects
-const lp = new login_page();
 const hp = new home_page();
 const set = new settings_page();
 let testData;
-let widgetValue;
-
 // Load fixture data
 before(() => {
     cy.fixture('data.json').then((data) => {
