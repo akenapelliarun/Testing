@@ -855,3 +855,32 @@ Then("The number of transactions graph should show data for Base network for all
 
   cy.log('✅ TRANSACTIONS GRAPH VERIFIED - Base data displayed for all time');
 });
+Then("The number of transactions graph should show data for bitcoin currency for all time range", () => {
+  cy.log('📊 TRANSACTIONS GRAPH VERIFICATION: Verifying Tron data display...');
+
+  dp.get_number_of_transactions_graph().should("be.visible");
+  cy.log('  ✅ Number of Transactions graph is visible');
+
+  dp.get_bitcoin_data_number_of_transactions_graph().should("be.visible");
+  cy.log('  ✅ Tron data is visible in graph');
+
+  dp.get_bitcoin_data_number_of_transactions_graph().should("have.attr", "fill", "#F7931A");
+  cy.log('  ✅ Tron data has correct Blue color (#F7931A)');
+
+  cy.log('✅ TRANSACTIONS GRAPH VERIFIED - Tron data displayed for all time');
+});
+
+Then("The number of transactions graph should show data for ethereum currency for all time range", () => {
+  cy.log('📊 TRANSACTIONS GRAPH VERIFICATION: Verifying Tron data display...');
+
+  dp.get_number_of_transactions_graph().should("be.visible");
+  cy.log('  ✅ Number of Transactions graph is visible');
+
+  dp.get_ethereum_data_number_of_transactions_graph().should("be.visible");
+  cy.log('  ✅ Tron data is visible in graph');
+
+  dp.get_ethereum_data_number_of_transactions_graph().should("have.attr", "fill", "#627EEA");
+  cy.log('  ✅ Tron data has correct Blue color (#627EEA)');
+
+  cy.log('✅ TRANSACTIONS GRAPH VERIFIED - Tron data displayed for all time');
+});
