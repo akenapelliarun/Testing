@@ -8,7 +8,8 @@ class home_page {
     }
 
     get_test_project_3() {
-        return cy.xpath("//button[normalize-space()='Test Project 1']")
+        return cy.xpath("//div[@class='rounded-md border border-[#c9ff548d]']/descendant::*[contains(text(),'Test Project 3')]")
+
     }
     get_payment_page() {
         return cy.xpath("//ul[@role='list']//descendant::*[contains(text(),'Payments')]")

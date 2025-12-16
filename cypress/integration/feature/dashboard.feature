@@ -3,11 +3,11 @@ Feature: Dashboard
     I want to view my dashboard
     and want to validate broken links and data present on the dashboard page
    
-  Scenario: User views dashboard
+  Scenario: Tc_Dash_01: User views dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
    
@@ -15,7 +15,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I check for broken links on the dashboard page
@@ -25,7 +25,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I validate the presence of key data on the dashboard
@@ -35,7 +35,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I validate the presence of widgets on the dashboard
@@ -45,7 +45,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     Then i navigate to "total payments" widget
@@ -56,7 +56,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     Then i navigate to "payment in last 30 days" widget
@@ -67,7 +67,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     Then i navigate to "total paying users" widget
@@ -78,7 +78,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     Then i navigate to "paying users in last 30 days" widget
@@ -89,7 +89,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     Then i navigate to "Total users requested payments" widget
@@ -100,7 +100,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     Then i navigate to "User attempted in last 30 days" widget
@@ -111,7 +111,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the network dropdown on dashboard
@@ -123,7 +123,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the network dropdown on dashboard
@@ -136,7 +136,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the network dropdown on dashboard
@@ -149,7 +149,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the network dropdown on dashboard
@@ -162,7 +162,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the network dropdown on dashboard
@@ -173,7 +173,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -190,7 +190,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -207,7 +207,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -225,7 +225,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -243,7 +243,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -261,7 +261,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -279,7 +279,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -297,7 +297,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -315,7 +315,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the currency dropdown on dashboard
@@ -327,7 +327,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the currency dropdown on dashboard
@@ -340,7 +340,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the currency dropdown on dashboard
@@ -353,7 +353,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the currency dropdown on dashboard
@@ -366,18 +366,18 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the currency dropdown on dashboard
     And I type "eth" in the search box of currency dropdown
     Then Only "ethereum" option should be visible in the dropdown
-
+  
   Scenario: validate whether the user is able to see all time data for bitcoin currency inside payment in usd graph for currency filter
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -393,7 +393,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -409,7 +409,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -426,7 +426,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -443,7 +443,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -460,7 +460,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -477,7 +477,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown
@@ -494,7 +494,7 @@ Feature: Dashboard
     Given I am logged in as a valid user
     When I navigate to the home page
     Then I click on the projects dropdown
-    And I select "test project 1" from the dropdown
+    And I select "test project 3" from the dropdown
     Then I click on the dashboard link
     Then I should see the dashboard page
     When I click on the time range dropdown

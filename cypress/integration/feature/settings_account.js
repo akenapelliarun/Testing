@@ -136,4 +136,27 @@ Then('the project name should be entered correctly', () => {
         .should('have.value', testData.projectName);
 });
 
+Then('I should see the PayRam connection QR code card with correct details', () => {
+    // Select the parent element using the XPath you provided
+    cy.xpath("//div[contains(@class,'w-full md:w-[64%]')]")
+      .should('be.visible')
+      .within(() => {
+        
+        // 1. Assert the QR Code is visible
+        // We look for an image tag (img) or an SVG (common for QRs) inside this container
+        cy.get('img, svg, canvas').first().should('be.visible');
 
+        // 2. Assert the Heading Text
+        cy.contains('h1, h2, h3, div', 'Connect to PayRam Mobile App')
+          .should('be.visible');
+
+        // 3. Assert the Description Text
+        cy.contains('Scan above QR code in mobile app to get started with linking wallets on mobile app')
+          .should('be.visible');
+
+        // 4. Assert the Expiration Timer
+        // We use a partial match because the time "01:16" changes
+        cy.contains('Expiring in')
+          .should('be.visible');
+    });
+});

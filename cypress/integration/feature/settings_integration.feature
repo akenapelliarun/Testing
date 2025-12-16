@@ -3,7 +3,7 @@ Feature: Settings
   I want to view my dashboard
   and want to validate broken links and data present on the dashboard page
 
-  Scenario: Verify Test connection of Network
+  Scenario: TC_SET_01: Verify Test connection of Network
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
@@ -13,7 +13,7 @@ Feature: Settings
       | Ethereum |
       | Tron     |
 
-  Scenario: Verify Base Test Connection
+  Scenario:TC_SET_02: Verify Base Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
@@ -21,7 +21,7 @@ Feature: Settings
     And I click on test connection
     Then I should see the connection success message
 
-  Scenario: Verify Bitcoin Test Connection
+  Scenario:TC_SET_03: Verify Bitcoin Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
@@ -29,7 +29,7 @@ Feature: Settings
     And I click on test connection
     Then I should see the connection success message
 
-  Scenario: Verify Ethereum Test Connection
+  Scenario: TC_SET_04 Verify Ethereum Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
@@ -37,7 +37,7 @@ Feature: Settings
     And I click on test connection
     Then I should see the connection success message
 
-  Scenario: Verify Tron Test Connection
+  Scenario: TC_SET_05; Verify Tron Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
@@ -45,7 +45,7 @@ Feature: Settings
     And I click on test connection
     Then I should see the connection success message
   
-  Scenario: Verify Base Network update
+  Scenario: TC_SET_06: Verify Base Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab
@@ -57,7 +57,7 @@ Feature: Settings
     And I click on the save details
     Then I should see the "Node details saved successfully" message
 
-    Scenario: Verify Bitcoin Network update
+    Scenario: TC_SET_07: Verify Bitcoin Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab
@@ -70,7 +70,7 @@ Feature: Settings
     And I click on the save details
     Then I should see the "Node details saved successfully" message
 
-    Scenario: Verify Ethereum Network update
+    Scenario: TC_SET_08: Verify Ethereum Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab
@@ -83,7 +83,7 @@ Feature: Settings
     And I click on the save details
     Then I should see the "Node details saved successfully" message
 
-    Scenario: Verify Tron Network update
+    Scenario: TC_SET_09: Verify Tron Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab

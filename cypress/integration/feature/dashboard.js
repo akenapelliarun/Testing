@@ -698,6 +698,65 @@ Then("The payment in usd graph should show data for Base network for all time ra
   cy.log('✅ PAYMENT USD GRAPH VERIFIED - Base data displayed for all time');
 });
 
+Then("The payment in usd graph should show data for bitcoin currency for all time range", () => {
+  cy.log('📊 PAYMENT USD GRAPH: Verifying Bitcoin data display...');
+
+  dp.get_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Payment in USD graph container is visible');
+
+  dp.get_bitcoin_data_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Bitcoin data element is visible');
+
+  dp.get_bitcoin_data_payment_in_usd_graph().should("have.attr", "fill", "#F7931A");
+  cy.log('  ✅ Bitcoin data has correct orange color (#F7931A)');
+
+  cy.log('✅ PAYMENT USD GRAPH: Bitcoin data verification complete');
+});
+
+Then("The payment in usd graph should show data for ethereum currency for all time range", () => {
+  cy.log('📊 PAYMENT USD GRAPH: Verifying Ethereum data display...');
+
+  dp.get_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Payment in USD graph container is visible');
+
+  dp.get_ethereum_data_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Ethereum data element is visible');
+
+  dp.get_ethereum_data_payment_in_usd_graph().should("have.attr", "fill", "#627EEA");
+  cy.log('  ✅ Ethereum data has correct purple-blue color (#627EEA)');
+
+  cy.log('✅ PAYMENT USD GRAPH: Ethereum data verification complete');
+});
+
+Then("The payment in usd graph should show data for TRON currency for all time range", () => {
+  cy.log('📊 PAYMENT USD GRAPH: Verifying Tron data display...');
+
+  dp.get_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Payment in USD graph container is visible');
+
+  dp.get_tron_data_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Tron data element is visible');
+
+  dp.get_tron_data_payment_in_usd_graph().should("have.attr", "fill", "#C23631");
+  cy.log('  ✅ Tron data has correct red color (#C23631)');
+
+  cy.log('✅ PAYMENT USD GRAPH: Tron data verification complete');
+});
+
+Then("The payment in usd graph should show data for Base currency for all time range", () => {
+  cy.log('📊 PAYMENT USD GRAPH: Verifying Base data display...');
+
+  dp.get_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Payment in USD graph container is visible');
+
+  dp.get_base_data_payment_in_usd_graph().should("be.visible");
+  cy.log('  ✅ Base data element is visible');
+
+  dp.get_base_data_payment_in_usd_graph().should("have.attr", "fill", "#0052FF");
+  cy.log('  ✅ Base data has correct blue color (#0052FF)');
+
+  cy.log('✅ PAYMENT USD GRAPH: Base data verification complete');
+});
 When("I validate the presence of bitcoin data on number of transactions graph", () => {
   cy.log('📊 BITCOIN DATA - TRANSACTIONS: Validating Bitcoin data in graph...');
   dp.get_bitcoin_data_number_of_transactions_graph().should("be.visible", { timeout: 10000 });

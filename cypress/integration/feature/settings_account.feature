@@ -2,14 +2,16 @@ Feature: Account Settings
   As a user
   I want to manage my projects and redirection URLs
   
-  Scenario: Verify Account page and project list
+  #TC_SET_01, TC_SET_02
+  Scenario: TC_SET_01: Verify Account page and project list
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the account tab
     Then the account page should be displayed
     And I scroll to and click on Test Project 3
+    Then I should see the PayRam connection QR code card with correct details
   
-  Scenario: Upadte project name and save
+  Scenario: TC_SET_07:Upadte project name and save
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the account tab
@@ -18,7 +20,7 @@ Feature: Account Settings
     When I enter the project name
     Then the project details edit save button should be visible
 
-   Scenario: Upadte Website Url and save
+   Scenario: TC_SET_08: Upadte Website Url and save
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the account tab
@@ -28,7 +30,7 @@ Feature: Account Settings
     Then the website url should be entered correctly
     Then the project details edit save button should be visible
    
-   Scenario: Update Success URL
+   Scenario:TC_SET_09: Update Success URL
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the account tab
@@ -38,7 +40,7 @@ Feature: Account Settings
     Then the success url should be entered correctly
     Then the redirection edit save button should be visible
 
-   Scenario: Update Cancel URL
+   Scenario: TC_SET_010: Update Cancel URL
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the account tab
