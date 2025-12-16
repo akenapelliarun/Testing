@@ -12,39 +12,44 @@ Feature: Settings
       | Bitcoin  |
       | Ethereum |
       | Tron     |
+    Then I should Logout from the user
 
-  Scenario:TC_SET_02: Verify Base Test Connection
+  Scenario: TC_SET_02: Verify Base Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
     When I click on the three dots for "Base"
     And I click on test connection
     Then I should see the connection success message
+    Then I should Logout from the user
 
-  Scenario:TC_SET_03: Verify Bitcoin Test Connection
+  Scenario: TC_SET_03: Verify Bitcoin Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
     When I click on the three dots for "Bitcoin"
     And I click on test connection
     Then I should see the connection success message
+    Then I should Logout from the user
 
-  Scenario: TC_SET_04 Verify Ethereum Test Connection
+  Scenario: TC_SET_04: Verify Ethereum Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
     When I click on the three dots for "Ethereum"
     And I click on test connection
     Then I should see the connection success message
+    Then I should Logout from the user
 
-  Scenario: TC_SET_05; Verify Tron Test Connection
+  Scenario: TC_SET_05: Verify Tron Test Connection
     Given I am logged in as a valid user
     Given I click on the settings tab
     When I click on the integration tab
     When I click on the three dots for "Tron"
     And I click on test connection
     Then I should see the connection success message
-  
+    Then I should Logout from the user
+
   Scenario: TC_SET_06: Verify Base Network update
     Given I am logged in as a valid user
     And I click on the settings tab
@@ -56,8 +61,9 @@ Feature: Settings
     And I type password in the password input
     And I click on the save details
     Then I should see the "Node details saved successfully" message
+    Then I should Logout from the user
 
-    Scenario: TC_SET_07: Verify Bitcoin Network update
+  Scenario: TC_SET_07: Verify Bitcoin Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab
@@ -69,8 +75,9 @@ Feature: Settings
     And I type password in the password input
     And I click on the save details
     Then I should see the "Node details saved successfully" message
+    Then I should Logout from the user
 
-    Scenario: TC_SET_08: Verify Ethereum Network update
+  Scenario: TC_SET_08: Verify Ethereum Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab
@@ -82,8 +89,9 @@ Feature: Settings
     And I type password in the password input
     And I click on the save details
     Then I should see the "Node details saved successfully" message
+    Then I should Logout from the user
 
-    Scenario: TC_SET_09: Verify Tron Network update
+  Scenario: TC_SET_09: Verify Tron Network update
     Given I am logged in as a valid user
     And I click on the settings tab
     When I click on the integration tab
@@ -95,3 +103,4 @@ Feature: Settings
     And I type password in the password input
     And I click on the save details
     Then I should see the "Node details saved successfully" message
+    Then I should Logout from the user

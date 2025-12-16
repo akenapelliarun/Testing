@@ -95,6 +95,19 @@ Then('I should see the dashboard page', () => {
   cy.log('✅ DASHBOARD PAGE LOADED SUCCESSFULLY');
 });
 
+Then('I should Logout from the user', () => {
+  cy.log('🚪 LOGOUT: Initiating logout process...');
+  
+  // Perform Logout Actions
+  dp.get_profile().should('be.visible').click({ force: true });
+  dp.get_logout().should('be.visible').click({ force: true });
+  
+  // Verify redirection to Login Page
+  lp.get_email_field().should('be.visible');
+  
+  cy.log('✅ LOGOUT SUCCESSFUL: User is back on the login page');
+});
+
 // ============================================
 // SCENARIO: Validate broken links on dashboard
 // ============================================

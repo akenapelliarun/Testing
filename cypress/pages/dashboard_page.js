@@ -206,7 +206,14 @@ class dashboard_page
     {
         return cy.xpath('//img[@src="https://testnet.resuefas.vip:8443/images/icons/CBBTC.png"]/ancestor::div[contains(@class,"flex")]//img[@alt="Check Icon"]') 
     }
-    
+    get_profile()
+    {
+        return cy.xpath('//button[contains(.,"Profile")]') 
+    }
+    get_logout()
+    {
+        return cy.xpath('//button[normalize-space(text())="Logout"]') 
+    }
 
 }   
 export default dashboard_page;
