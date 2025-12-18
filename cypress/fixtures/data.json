@@ -9,5 +9,14 @@
   "projectName": "Test Project 3",
   "websiteUrl": "https://testnet.resuefas.vip:8443",
   "successUrl": "https://success.resuefas.vip",
-  "cancelUrl": "https://cancel.resuefas.vip"
-}
+  "cancelUrl": "https://cancel.resuefas.vip",
+  "twitterHandle": "@my_handle",
+  "discordLink": "https://discord.gg/invite ",
+  "telegramLink": "https://t.me/my_telegram",
+  "facebookHandle": "my_facebook",
+  "instagramHandle": "my_instagram",
+  "linkedinHandle": "https://linkedin.com/in/my_linkedin",
+  "supportEmail": "test@gmail.com",
+  "replyToEmail": "reply@gmail.com",
+  "fromEmail" : "from@gmail.com"
+  }
